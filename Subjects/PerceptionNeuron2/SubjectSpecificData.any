@@ -1,5 +1,8 @@
 Main.ModelSetup.SubjectSpecificData = 
 {
+  
+  #define PERCEPTION_NEURON_TYPE 2
+ 
 
   Main.HumanModel.Anthropometrics = 
   {

@@ -1,0 +1,62 @@
+#define BVH_MODEL Main.ModelSetup.BVHFileData.Model
+
+
+
+Main.HumanModel.Anthropometrics.SegmentDimensions =
+{
+   PelvisWidth=vnorm(
+     BVH_MODEL.Hips.Seg.RightUpLeg.sRel
+     - BVH_MODEL.Hips.Seg.LeftUpLeg.sRel
+   ); ///< distance between hip joints
+   
+   HeadHeight  = 0.75*vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.Neck.Neck1.Head.Seg.End_Site.sRel);
+
+   TrunkHeight = 1.0*(
+      vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Seg.Spine.sRel) +
+      vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Seg.Spine1.sRel) +
+      vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Seg.Spine2.sRel) +
+      vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.Seg.Neck.sRel)+
+      vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.Neck.Seg.Neck1.sRel)
+   );
+   
+   TrunkWidth = vnorm( 
+         Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.Seg.RightShoulder.sRel-
+         Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.Seg.LeftShoulder.sRel
+       )
+       + vnorm( Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.LeftShoulder.Seg.LeftArm.sRel)
+       + vnorm( Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.RightShoulder.Seg.RightArm.sRel);
+
+   
+   Right = 
+   {
+     UpperArmLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.RightShoulder.RightArm.Seg.RightForeArm.sRel);
+     LowerArmLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.RightShoulder.RightArm.RightForeArm.Seg.RightHand.sRel);
+     HandLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.RightShoulder.RightArm.RightForeArm.RightHand.Seg.RightInHandMiddle.sRel)
+        +vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.RightShoulder.RightArm.RightForeArm.RightHand.RightInHandMiddle.Seg.RightHandMiddle1.sRel)
+        +vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.RightShoulder.RightArm.RightForeArm.RightHand.RightInHandMiddle.RightHandMiddle1.Seg.RightHandMiddle2.sRel)
+        +vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.RightShoulder.RightArm.RightForeArm.RightHand.RightInHandMiddle.RightHandMiddle1.RightHandMiddle2.Seg.RightHandMiddle3.sRel)
+        +vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.RightShoulder.RightArm.RightForeArm.RightHand.RightInHandMiddle.RightHandMiddle1.RightHandMiddle2.RightHandMiddle3.Seg.End_Site.sRel);
+
+     ThighLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.RightUpLeg.Seg.RightLeg.sRel);  
+     ShankLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.RightUpLeg.RightLeg.Seg.RightFoot.sRel);
+     FootLength = 2*vnorm(Main.ModelSetup.BVHFileData.Model.Hips.RightUpLeg.RightLeg.RightFoot.Seg.End_Site.sRel[2]);
+     FootHeight = 0.8*vnorm(Main.ModelSetup.BVHFileData.Model.Hips.RightUpLeg.RightLeg.RightFoot.Seg.End_Site.sRel[1]);
+   };
+   Left = 
+   {
+     UpperArmLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.LeftShoulder.LeftArm.Seg.LeftForeArm.sRel);
+     LowerArmLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.LeftShoulder.LeftArm.LeftForeArm.Seg.LeftHand.sRel);
+     HandLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.LeftShoulder.LeftArm.LeftForeArm.LeftHand.Seg.LeftInHandMiddle.sRel)
+        +vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.LeftShoulder.LeftArm.LeftForeArm.LeftHand.LeftInHandMiddle.Seg.LeftHandMiddle1.sRel)
+        +vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.LeftShoulder.LeftArm.LeftForeArm.LeftHand.LeftInHandMiddle.LeftHandMiddle1.Seg.LeftHandMiddle2.sRel)
+        +vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.LeftShoulder.LeftArm.LeftForeArm.LeftHand.LeftInHandMiddle.LeftHandMiddle1.LeftHandMiddle2.Seg.LeftHandMiddle3.sRel)
+        +vnorm(Main.ModelSetup.BVHFileData.Model.Hips.Spine.Spine1.Spine2.LeftShoulder.LeftArm.LeftForeArm.LeftHand.LeftInHandMiddle.LeftHandMiddle1.LeftHandMiddle2.LeftHandMiddle3.Seg.End_Site.sRel);
+
+     ThighLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.LeftUpLeg.Seg.LeftLeg.sRel);  
+     ShankLength = vnorm(Main.ModelSetup.BVHFileData.Model.Hips.LeftUpLeg.LeftLeg.Seg.LeftFoot.sRel);
+     FootLength = 2*vnorm(Main.ModelSetup.BVHFileData.Model.Hips.LeftUpLeg.LeftLeg.LeftFoot.Seg.End_Site.sRel[2]);
+     FootHeight = 0.8*vnorm(Main.ModelSetup.BVHFileData.Model.Hips.LeftUpLeg.LeftLeg.LeftFoot.Seg.End_Site.sRel[1]);
+   };
+
+};
+

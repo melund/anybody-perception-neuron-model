@@ -1,0 +1,13 @@
+Main.ModelSetup.SubjectSpecificData = 
+{
+  
+  #define PERCEPTION_NEURON_TYPE 1
+
+  Main.HumanModel.Anthropometrics = 
+  {
+     BodyMass = 75.4;
+     BodyHeight = 1.73;
+  };
+   
+ 
+};

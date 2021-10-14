@@ -9,7 +9,25 @@ Main.ModelSetup.LabSpecificData = {
  
  #path BODY_MODEL_CONFIG_FILE "BodyModelConfig.any"
  
- #path MOCAP_MARKER_PROTOCOL_FILE "MarkerProtocol.any"
+ 
+ #ifndef PERCEPTION_NEURON_TYPE
+ #define PERCEPTION_NEURON_TYPE 2
+ #endif
+ 
+ // There seem to be many versions/structures of the perception neuron data
+ #if PERCEPTION_NEURON_TYPE == 1
+ #path MOCAP_MARKER_PROTOCOL_FILE "MarkerProtocol_perception_neuron_1.any"
+ #endif
+ 
+ #if PERCEPTION_NEURON_TYPE == 2
+ #path MOCAP_MARKER_PROTOCOL_FILE "MarkerProtocol_perception_neuron_2.any"
+ #endif
+ 
+
+
+ 
+ 
+ 
  #path MOCAP_EXTRA_DRIVERS_FILE "ExtraDrivers.any"
  
  #define MOCAP_USE_GRF_PREDICTION ON
